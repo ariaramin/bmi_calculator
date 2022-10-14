@@ -110,7 +110,7 @@ class _ApplicationState extends State<Application>
             width: 8,
           ),
           FaIcon(
-            FontAwesomeIcons.mars,
+            icon,
             size: 16,
           ),
         ],
