@@ -1,6 +1,6 @@
 import 'package:bmi_calculator/constants/constants.dart';
+import 'package:bmi_calculator/widgets/SlidersWidget.dart';
 import 'package:flutter/material.dart';
-import '../widgets/InputsWidget.dart';
 
 class ManTabView extends StatelessWidget {
   const ManTabView({super.key});
@@ -17,7 +17,7 @@ class ManTabView extends StatelessWidget {
             image: AssetImage("images/man.png"),
           ),
         ),
-        InputsWidget(primaryColor),
+        SlidersWidget(primaryColor),
       ],
     );
   }

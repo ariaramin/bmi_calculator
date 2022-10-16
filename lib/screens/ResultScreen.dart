@@ -38,11 +38,21 @@ class ResultScreen extends StatelessWidget {
           _getResultCard(),
           Column(
             children: [
-              RightShape(230),
+              RightShape(
+                _getRightShapeWidthSize(
+                  context,
+                  _resultBMI,
+                ),
+              ),
               SizedBox(
                 height: 16,
               ),
-              LeftShape(120),
+              LeftShape(
+                _getLeftShapeWidthSize(
+                  context,
+                  _resultBMI,
+                ),
+              ),
             ],
           ),
           _getResume(),
@@ -86,21 +96,51 @@ class ResultScreen extends StatelessWidget {
     );
   }
 
-  // double _calculateShapeWidthSize(double width) {
-  //   var defaultWidth = (width * 10) - 180;
-  //   if (defaultWidth < double.infinity) {
-  //     return defaultWidth;
-  //   } else if (defaultWidth < 0) {
-  //     return defaultWidth + 80;
-  //   } else {
-  //     return double.infinity - 180;
-  //   }
-  // }
+  double _getRightShapeWidthSize(BuildContext context, double bmi) {
+    if (bmi < 18.5) {
+      return _getPositiveIndex(context, bmi);
+    } else {
+      return _getNegativeIndex(context, bmi);
+    }
+  }
+
+  double _getLeftShapeWidthSize(BuildContext context, double bmi) {
+    if (bmi < 18.5) {
+      return _getNegativeIndex(context, bmi);
+    } else {
+      return _getPositiveIndex(context, bmi);
+    }
+  }
+
+  double _getNegativeIndex(BuildContext context, double width) {
+    var defaultWidth = (width * 10).round();
+    var widthOfScreen = MediaQuery.of(context).size.width;
+
+    if (defaultWidth + 30 > widthOfScreen.round()) {
+      return widthOfScreen - 108;
+    } else if (defaultWidth - 80 < 0) {
+      return defaultWidth.toDouble();
+    } else {
+      return defaultWidth - 80;
+    }
+  }
+
+  double _getPositiveIndex(BuildContext context, double width) {
+    var rightShapeWidth = _getNegativeIndex(context, width);
+    var widthOfScreen = MediaQuery.of(context).size.width;
+    var leftShapeWidth = widthOfScreen - rightShapeWidth;
+
+    if (leftShapeWidth + 120 > widthOfScreen.round()) {
+      return widthOfScreen - 108;
+    } else {
+      return leftShapeWidth;
+    }
+  }
 
   Widget _getResultCard() {
     return Container(
       width: 236,
-      height: 226,
+      height: 216,
       child: Card(
         elevation: 12,
         child: Padding(
