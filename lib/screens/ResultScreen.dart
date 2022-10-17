@@ -58,7 +58,7 @@ class ResultScreen extends StatelessWidget {
           ),
           _getAdvice(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 34),
+            padding: EdgeInsets.symmetric(horizontal: 34),
             child: TextButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -193,9 +193,13 @@ class ResultScreen extends StatelessWidget {
     if (_resultText == "نرمال") {
       return Colors.green[700];
     } else if (_resultText == "اضافه وزن") {
+      return Colors.yellow[700];
+    } else if (_resultText == "چاقی") {
+      return Colors.orange[700];
+    } else if (_resultText == "چاقی مفرت") {
       return Colors.red[700];
     } else {
-      return Colors.yellow[700];
+      return Colors.blue[700];
     }
   }
 
