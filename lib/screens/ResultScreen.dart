@@ -7,8 +7,9 @@ import '../constants/constants.dart';
 
 class ResultScreen extends StatelessWidget {
   final double _resultBMI;
-  final _resultText, _adviceTitle;
-  ResultScreen(this._resultBMI, this._resultText, this._adviceTitle,
+  final _resultText, _adviceTitle, _adviceList;
+  ResultScreen(
+      this._resultBMI, this._resultText, this._adviceTitle, this._adviceList,
       {super.key});
 
   @override
@@ -24,7 +25,7 @@ class ResultScreen extends StatelessWidget {
 
   AppBar _getAppBar() {
     return AppBar(
-      backgroundColor: accentColor,
+      backgroundColor: primaryColor,
       centerTitle: true,
       title: Text("نتیجه"),
     );
@@ -55,7 +56,7 @@ class ResultScreen extends StatelessWidget {
               ),
             ],
           ),
-          _getResume(),
+          _getAdvice(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 34),
             child: TextButton(
@@ -64,7 +65,7 @@ class ResultScreen extends StatelessWidget {
               },
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: primaryColor,
+                backgroundColor: secondaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(12),
@@ -158,7 +159,7 @@ class ResultScreen extends StatelessWidget {
                 Text(
                   _resultBMI.toStringAsFixed(1),
                   style: TextStyle(
-                    fontSize: 68,
+                    fontSize: 64,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -198,7 +199,7 @@ class ResultScreen extends StatelessWidget {
     }
   }
 
-  Widget _getResume() {
+  Widget _getAdvice() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       width: double.infinity,
@@ -212,20 +213,13 @@ class ResultScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          _getHistory(),
+          _getAdviceList(),
         ],
       ),
     );
   }
 
-  Widget _getHistory() {
-    var resumeList = [
-      "💻 از سال ۹۹ به طور جدی برنامه نویسی رو از حوزه وب شروع کردم",
-      "📱 از سال ۱۴۰۰ به حوزه اندروید و موبایل علاقه‌مند شدم",
-      "👨‍💻 یکسال در حوزه اندروید فعالیت کردم و بعد از اون به فلاتر علاقه‌مند شدم",
-      "📚 درحال حاضر هم مشغول یادگیری فلاتر هستم",
-      "🔥 این داستان ادامه دارد..."
-    ];
+  Widget _getAdviceList() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
@@ -234,9 +228,9 @@ class ResultScreen extends StatelessWidget {
           SizedBox(
             width: double.infinity,
           ),
-          for (var resume in resumeList)
+          for (var advice in _adviceList)
             Text(
-              "$resume",
+              "$advice",
               textDirection: TextDirection.rtl,
             ),
         ],

@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   AppBar _getAppBar() {
     return AppBar(
-      backgroundColor: accentColor,
+      backgroundColor: primaryColor,
       centerTitle: true,
       title: Text("‌BMI محاسبه‌گر"),
     );
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen>
             controller: _tabController,
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: accentColor,
+              color: primaryColor,
             ),
             labelColor: Colors.white,
             unselectedLabelColor: Colors.black,

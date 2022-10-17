@@ -1,20 +1,17 @@
+import 'package:bmi_calculator/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../screens/ResultScreen.dart';
 
 class SlidersWidget extends StatefulWidget {
-  final Color _primaryColor;
-  const SlidersWidget(this._primaryColor, {super.key});
+  const SlidersWidget({super.key});
 
   @override
-  State<SlidersWidget> createState() => _SlidersWidgetState(_primaryColor);
+  State<SlidersWidget> createState() => _SlidersWidgetState();
 }
 
 class _SlidersWidgetState extends State<SlidersWidget> {
-  final Color _primaryColor;
-  _SlidersWidgetState(this._primaryColor);
-
   double _weightValue = 0;
   double _heightValue = 0;
 
@@ -56,6 +53,7 @@ class _SlidersWidgetState extends State<SlidersWidget> {
                           resultBMI,
                           _resultText,
                           _adviceTitle,
+                          _adviceList,
                         );
                       }),
                     );
@@ -63,7 +61,7 @@ class _SlidersWidgetState extends State<SlidersWidget> {
                 },
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: _primaryColor,
+                  backgroundColor: secondaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(12),
@@ -188,24 +186,64 @@ class _SlidersWidgetState extends State<SlidersWidget> {
 
   double _calculateBMI() {
     var heightToMeter = (_heightValue / 100);
-    if (heightToMeter <= 0.1) {
-      heightToMeter *= 10;
-    }
     var resultBMI = _weightValue / (heightToMeter * heightToMeter);
+    if (resultBMI > 100) {
+      resultBMI /= 10;
+    }
 
     return resultBMI;
   }
 
   void _setAdvices(double bmi) {
-    if (bmi > 25) {
+    if (bmi >= 25 && bmi < 30) {
       _resultText = 'اضافه وزن';
       _adviceTitle = "کاهش وزن";
+      _adviceList = [
+        "💪 به فعالیت بدنی و ورزش منظم بپردازید",
+        "🐟 غذاهای متنوع و غنی از مواد مغذی بخورید",
+        "🍏 میوه و سبزی فراوان بخورید",
+        "🍳 پروتئین بیشتری مصرف کنید",
+        "💧 آب زیاد بنوشید"
+      ];
     } else if (bmi >= 18.5 && bmi <= 25) {
       _resultText = 'نرمال';
       _adviceTitle = "حفظ سلامت";
+      _adviceList = [
+        "💪 به فعالیت بدنی و ورزش منظم بپردازید",
+        "🐟 غذاهای غنی از مواد مغذی را انتخاب کنید",
+        "🍏 میوه و سبزی فراوان بخورید",
+        "💧 آب زیاد بنوشید",
+      ];
+    } else if (bmi >= 30 && bmi <= 40) {
+      _resultText = 'چاقی';
+      _adviceTitle = "کاهش وزن";
+      _adviceList = [
+        "💪 به فعالیت بدنی و ورزش منظم بپردازید",
+        "🐟 غذاهای متنوع و غنی از مواد مغذی بخورید",
+        "🍏 میوه و سبزی فراوان بخورید",
+        "🍳 پروتئین بیشتری مصرف کنید",
+        "💧 آب زیاد بنوشید"
+      ];
+    } else if (bmi > 40) {
+      _resultText = 'چاقی مفرت';
+      _adviceTitle = "کاهش وزن";
+      _adviceList = [
+        "💪 به فعالیت بدنی و ورزش منظم بپردازید",
+        "🐟 غذاهای متنوع و غنی از مواد مغذی بخورید",
+        "🍏 میوه و سبزی فراوان بخورید",
+        "🍳 پروتئین بیشتری مصرف کنید",
+        "💧 آب زیاد بنوشید"
+      ];
     } else {
       _resultText = 'کمبود وزن';
       _adviceTitle = "افزایش وزن";
+      _adviceList = [
+        "🍗 بیشتر غذا بخورید",
+        "🐟 غذاهای غنی از مواد مغذی را انتخاب کنید",
+        "💪 به فعالیت بدنی و ورزش منظم بپردازید",
+        "🍏 میوه و سبزی فراوان بخورید",
+        "🍳 پروتئین بیشتری مصرف کنید",
+      ];
     }
   }
 }

@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/constants/constants.dart';
 import 'package:bmi_calculator/widgets/SlidersWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +16,7 @@ class WomanTabView extends StatelessWidget {
             image: AssetImage("images/woman.png"),
           ),
         ),
-        SlidersWidget(primaryColor),
+        SlidersWidget(),
       ],
     );
   }
