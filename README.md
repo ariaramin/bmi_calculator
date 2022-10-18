@@ -1,6 +1,6 @@
 # bmi_calculator
 
-A new Flutter project.
+![image](preview/bmi.png)
 
 ## Getting Started
 
